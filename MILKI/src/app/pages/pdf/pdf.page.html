@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar color="danger">
+      <ion-buttons>
+          <ion-menu-button color="light"
+                           menu="menu">
+          </ion-menu-button>
+
+  <ion-title text-center>Informe lechero</ion-title>
+        </ion-buttons>
+    <ion-buttons slot="end">
+        <ion-avatar>
+          <img class="avatar" src="../../assets/icon/icono_leche.svg">
+        </ion-avatar>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <ion-item>
+      <ion-label>Nombre de la Finca: {{ dataService.name }}</ion-label>
+  </ion-item>
+  <ion-item>
+      <ion-label>Fecha actual: <p> {{ myDate | date }}</p></ion-label>
+  </ion-item>
+  <ion-item>
+      <ion-label>Total Ordeños: {{ dataService.totalm }}</ion-label>
+  </ion-item>
+  
+  <br>
+
+  <ion-grid class="grid">
+        <ion-row>
+            <ion-col>Informe de Producción lechera</ion-col>
+            
+          </ion-row>
+          <ion-row>
+              <ion-list class="list" >
+                  <ion-item   *ngFor="let item of ganaderia | async " >
+              <ion-col > Id: {{item.numero_vaca}} <br> {{item.FO | date: 'dd-MM-yyyy' }}  </ion-col>
+              <ion-col></ion-col>
+              <ion-col>Mañana: {{item.jornada1}} Lts</ion-col>
+              <ion-col>Tarde: {{item.jornada2}} Lts</ion-col>
+              <ion-col>Total: {{item.jornada1 + item.jornada2}}</ion-col>
+          </ion-item>
+        </ion-list>
+      </ion-row>
+    </ion-grid>
+  
+    <ion-fab vertical="bottom"  horizontal="end" slot="fixed"  >
+        <ion-fab-button color="danger" (click)="descargar()">
+          <ion-icon  name="document" ></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+
+    <ion-list id="results" >
+        <ion-item class="tabla">
+            <ion-label>Nombre de la Finca: {{ dataService.name }}</ion-label>
+        </ion-item>
+        <ion-item class="tabla">
+            <ion-label>Fecha: <p> {{ myDate | date }}</p></ion-label>
+        </ion-item>
+        <ion-item class="tabla">
+            <ion-label>Total Ordeños: {{ dataService.totalm }}</ion-label>
+        </ion-item>
+        <ion-item  *ngFor="let item of ganaderia | async " >
+      <table class="tabla" >
+          <thead>
+              <tr >
+                <th>Id : {{item.numero_vaca}} </th> 
+                <th>Fecha: {{item.FO | date: 'dd-MM-yyyy' }}</th> 
+                <th>Mañana: {{item.jornada1}} Lts </th> 
+                <th>Tarde: {{item.jornada2}} Lts</th>   
+                <th>Total:  {{item.jornada1 + item.jornada2}}</th>
+              </tr>
+            </thead>
+    </table>
+  </ion-item>
+      </ion-list>
+</ion-content>

@@ -1,0 +1,135 @@
+<ion-header>
+    <ion-toolbar color="danger">
+        <ion-buttons>
+            <ion-menu-button color="light"
+                             menu="menu">
+            </ion-menu-button>
+  
+    <ion-title text-center>Consulta de Ordeño</ion-title>
+          </ion-buttons>
+      <ion-buttons slot="end">
+          <ion-avatar>
+            <img class="avatar" src="../../assets/icon/F2.png ">
+          </ion-avatar>
+        </ion-buttons>
+  
+    </ion-toolbar>
+  </ion-header>
+
+   <ion-content id="results">
+
+      <ion-button color="light" size="small"  (click)="contar()">
+          Guardar registros
+          <ion-input id="totalm" type="text" [value]="totalm" ></ion-input>
+        </ion-button>
+
+      <ion-fab vertical="bottom" horizontal="end" slot="fixed" > 
+          <ion-fab-button color="danger">
+            <ion-icon name="add"></ion-icon>
+          </ion-fab-button>
+      
+          <ion-fab-list side="start" >
+            <ion-fab-button routerLink= '../pdf'><ion-icon name="document" ></ion-icon></ion-fab-button>
+          </ion-fab-list>
+          
+          <ion-fab-list side="top" >
+              <ion-fab-button routerLink= '../lecher'><ion-icon name="add" ></ion-icon></ion-fab-button>
+            </ion-fab-list>
+        </ion-fab>
+
+<ion-card  *ngFor="let item of leche" >
+        <span *ngIf="!item.isEdit; else elseBlock">
+          <ion-card-header>
+            <ion-card-title>Nombre: {{item.nombre_vaca}} 
+                             </ion-card-title>
+            <ion-card-subtitle>
+                Id: {{item.numero_vaca}} <br>
+                Fecha: {{item.FO | date: 'dd-MM-yyyy' }}<br>
+                Jornada1: {{item.jornada1}}<br>
+                Encargado: {{item.encargado1}}<br>
+                Jornada2: {{item.jornada2}}<br>
+                Encargado: {{item.encargado2}}<br> 
+                Total ordeño: {{item.jornada1 + item.jornada2}}   Lts <br>
+
+            </ion-card-subtitle>
+          </ion-card-header>
+         
+          <ion-card-content>
+     
+            <ion-button shape="round" color="secondary" size="small" (click)="EditRecord(item)">
+              <ion-icon size="small" slot="icon-only" name="create"></ion-icon>
+            </ion-button>
+            <ion-button shape="round" color="danger" size="small" (click)="RemoveRecord(item.id)">
+              <ion-icon size="small" slot="icon-only" name="trash"></ion-icon>
+            </ion-button>
+          </ion-card-content>
+ 
+        </span>
+        <ng-template #elseBlock>
+          <ion-card-header>
+            <ion-card-title text-center>
+              Modificaciones de ordeños
+            </ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-item>
+              <ion-label><strong>Nombre</strong></ion-label>
+              <ion-input type="text" [(ngModel)]="item.Editnombre_vaca"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label><strong>Id</strong></ion-label>
+              <ion-input type="text" [(ngModel)]="item.Editnumero_vaca"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label><strong>Fecha de ordeño</strong></ion-label>
+              <ion-datetime min="2013" max="2018" displayFormat="MM/DD/YY"  type="date-time" [(ngModel)]="item.EditFO"></ion-datetime>
+            </ion-item>
+<br>
+            <ion-item>
+              <ion-label><strong>Jornada 1 :</strong></ion-label>
+              <ion-input type="number" [(ngModel)]="item.Editjornada1"></ion-input>Lts
+            </ion-item>
+
+            <ion-item>
+              <ion-label><strong>Encargado</strong></ion-label>
+              <ion-input type="text" [(ngModel)]="item.Editencargado1"></ion-input>
+            </ion-item>
+<br>
+            <ion-item>
+                <ion-label><strong>Jornada 2 :</strong></ion-label>
+                <ion-input type="number" [(ngModel)]="item.Editjornada2"></ion-input>Lts
+              </ion-item>
+
+              <ion-item>
+                <ion-label><strong>Encargado</strong></ion-label>
+                <ion-input type="text" [(ngModel)]="item.Editencargado2"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Total ordeño <h1>{{item.Editjornada2 + item.Editjornada1 }} Lts</h1></ion-label>
+              </ion-item>
+
+            <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-button  fill="outline" color="danger" size="small" (click)="item.isEdit = false">
+                  Cancelar
+                </ion-button>
+              </ion-col>
+              <ion-col>
+                <ion-button fill="outline" color="medium" size="small" (click)="UpdateRecord(item)">
+                  Modificar
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          
+
+          </ion-card-content>
+        </ng-template>
+      </ion-card>
+</ion-content>
+

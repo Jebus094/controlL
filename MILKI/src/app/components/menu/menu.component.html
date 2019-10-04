@@ -1,0 +1,32 @@
+<p>
+    <ion-menu 
+    side="start" 
+    menuId="menu"
+    contentId="principal">
+      <ion-header>
+        <ion-toolbar color="light">
+          <ion-title>Menú</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          <ion-menu-toggle *ngFor="let c of componentes | async ">
+              <ion-item 
+              [routerLink]="c.redirectTo">
+              <i style="
+              font-size: 1.5rem;
+              padding: 10px;" class="{{c.icon}}"></i>
+              <ion-label>{{c.name}}</ion-label>
+              </ion-item>
+              
+          </ion-menu-toggle>
+         
+              <ion-button expand="block" color="light"  (click)="Onlogout()" href="/inicio">Cerrar Sesión</ion-button>
+            
+          
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+
+
+</p>

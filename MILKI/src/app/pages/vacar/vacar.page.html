@@ -1,0 +1,115 @@
+<app-header titulo="Registrar Vaca"></app-header>
+
+<ion-content padding>
+  <ion-grid fixed>
+
+    <ion-card>
+      <ion-item>
+        <ion-avatar>
+          <img src="../../assets/icon/vacapp.jpg">
+        </ion-avatar>
+        <ion-label text-center>Información Básica</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-input placeholder="Nombre" [(ngModel)]="nombre_vaca"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input placeholder="ID" [(ngModel)]="numero_vaca"></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-label>Raza</ion-label>
+          <ion-select [(ngModel)]="raza">
+            <ion-select-option value="Brahman">Brahman</ion-select-option>
+            <ion-select-option value="Gyr">Gyr</ion-select-option>
+            <ion-select-option value="Holstein">Holstein</ion-select-option>
+            <ion-select-option value="Jersey">Jersey</ion-select-option>
+            <ion-select-option value="Normando">Normando</ion-select-option>
+            <ion-select-option value="Simental">Simental</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+      <ion-item>
+        <ion-input placeholder="Peso" type="number" [(ngModel)]="peso"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label color="medium">Fecha de Nacimiento</ion-label>
+        <ion-datetime type="date-time" [(ngModel)]="FN"></ion-datetime>
+      </ion-item>
+    </ion-card>
+
+    <br>
+
+    <ion-card id="descendientes">
+      <ion-item>
+        <ion-avatar>
+          <img class="" src="../../assets/icon/descendientes.jpg">
+        </ion-avatar>
+        <ion-label text-center>Descendientes</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-input placeholder="cantidad_hijos" [(ngModel)]="cantidad_hijos"></ion-input>
+      </ion-item>
+    </ion-card>
+    <br>
+
+    <ion-card>
+      <ion-item>
+        <ion-avatar>
+          <img src="../../assets/icon/medicamentopp.jpg">
+        </ion-avatar>
+        <ion-label text-center>Estado</ion-label>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-input placeholder="Activa, Vendida, Enferma, Muerta" [(ngModel)]="estado"></ion-input>
+      </ion-item>
+    </ion-card>
+
+    <br>
+    <ion-card>
+      <ion-item>
+        <ion-avatar>
+          <img src="../../assets/icon/medicamentopp.jpg">
+        </ion-avatar>
+        <ion-label text-center>Salud</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label color="medium">Enfermedad</ion-label>
+        <ion-input type="text" [(ngModel)]="enfermedad"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label color="medium">Medicamento</ion-label>
+        <ion-input type="text" [(ngModel)]="medicamento"></ion-input>
+      </ion-item>
+    </ion-card>
+
+    <br>
+
+
+
+    <ion-row>
+      <ion-col text-center>
+        <ion-button (click)="CreateRecord()" [disabled]="!nombre_vaca || !numero_vaca || !peso">
+          <ion-icon size="small" slot="icon-only" name="add"></ion-icon>
+          &nbsp;Registrar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col text-center>
+        <ion-button [routerLink]="['/vacac']"> Consultar</ion-button>
+        <ion-icon size="small" slot="icon-only" name="add"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+
+
+</ion-content>

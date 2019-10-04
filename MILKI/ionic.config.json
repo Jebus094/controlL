@@ -1,0 +1,7 @@
+{
+  "name": "MILK",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

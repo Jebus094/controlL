@@ -1,0 +1,40 @@
+[
+  {
+    "icon": "far fa-home",
+    "name": "Inicio",
+    "redirectTo": "/inicio"
+  },
+  {
+    "icon": "far fa-cow",
+    "name": "Ternera-Novilla",
+    "redirectTo": "/novillac"
+  },
+  {
+    "icon": "fas fa-cow",
+    "name": "Prosima",
+    "redirectTo": "/prosimac"
+  },
+  {
+    "icon": "fal fa-cow",
+    "name": "Vacas",
+    "redirectTo": "/vacac"
+  },
+  {
+    "icon": "far fa-glass-whiskey",
+    "name": " Ordeños",
+    "redirectTo": "/lechec"
+  },
+  {
+    "icon": "far fa-chart-pie",
+    "name": "Estadisticas",
+    "redirectTo": "/estadisticas"
+  },
+  {
+    "icon": "far fa-newspaper",
+    "name": "Noticias",
+    "redirectTo": "/noticias"
+  }
+  
+  
+
+]

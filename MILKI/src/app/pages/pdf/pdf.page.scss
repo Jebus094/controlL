@@ -1,0 +1,23 @@
+.avatar{
+    margin-top: 10px;
+    width: 80%;
+    height: 80%;
+    }
+td, th { 
+    padding: 5px; 
+    border: 1px solid #ccc; 
+    text-align: center; 
+}
+.grid {
+    display: grid;
+    color: red;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-left: 15px;
+    text-align: center;
+  }
+  .list{
+      color: blue;
+  }
+  .tabla{
+      opacity: 0;
+  }

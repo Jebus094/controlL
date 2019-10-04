@@ -1,0 +1,101 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons>
+      <ion-menu-button color="light" menu="menu">
+      </ion-menu-button>
+
+      <!-- <link rel="stylesheet"
+      href="../../../assets/fonts/fontawesome_pro/pro.min.css" type="text/css" 
+       > -->
+
+      <ion-title text-center>Inicio</ion-title>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-avatar>
+        <img class="avatar" src="../../assets/icon/F2.png ">
+      </ion-avatar>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+<ion-card >
+  <img  src="../../assets/icon/B2.png">
+  
+   <ion-button  (click)="accion1()" color="light" expand="full">
+     Novillas
+     <ion-icon name="arrow-forward" mode="ios"></ion-icon>
+  </ion-button>
+  <ion-card *ngIf="ocultar1">
+      <ion-grid class="grid">
+          <ion-row>
+              <ion-col class="logo"><img src="../../../assets/icon/novillapp.jpg"></ion-col>
+              <ion-col><br><h1>{{ dataService.totaln }}</h1> novilla(s) 
+                <br>
+                <p> {{ myDate | date }}</p> 
+              </ion-col>
+            </ion-row>
+      </ion-grid>
+   </ion-card>
+
+  <ion-button (click)="accion2()" color="light" expand="full">
+     Vacas Gestantes 
+     <ion-icon name="arrow-forward" mode="ios"></ion-icon>
+  </ion-button>
+  <ion-card *ngIf="ocultar2">
+      <ion-grid class="grid">
+          <ion-row>
+              <ion-col class="logo"><img src="../../../assets/icon/gestantepp.jpg"></ion-col>
+              <ion-col><br>  <h1> {{ dataService.totalvg }} </h1>Gestantes(s) 
+                <br>
+                <p> {{ myDate | date }}</p>
+              </ion-col>
+            </ion-row>
+      </ion-grid>
+   </ion-card>
+
+   <ion-button (click)="accion3()" color="light" expand="full" >
+     Vacas 
+     <ion-icon name="arrow-forward" mode="ios"></ion-icon>
+  </ion-button>
+  <ion-card *ngIf="ocultar3">
+      <ion-grid class="grid">
+          <ion-row>
+              <ion-col class="logo"><img src="../../../assets/icon/vacapp.jpg"></ion-col>
+              <ion-col><br>  <h1>{{dataService.totalv}}</h1> Vaca(s)
+                <br>
+                <p> {{ myDate | date }}</p>
+              </ion-col>
+            </ion-row>
+      </ion-grid>
+   </ion-card>
+
+   <ion-button (click)="accion4()" color="light" expand="full">
+     Ordeños 
+     <ion-icon name="arrow-forward" mode="ios"></ion-icon>
+  </ion-button>
+<ion-card *ngIf="ocultar4">
+    <ion-grid class="grid">
+        <ion-row>
+            <ion-col class="logo"><img src="../../../assets/icon/lechepp1.jpg"></ion-col>
+            <ion-col><br><h1>{{ dataService.totalm }}</h1> Ordeño(s)
+              <br>
+              <p> {{ myDate | date }}</p> 
+            </ion-col>
+          </ion-row>
+    </ion-grid>
+ </ion-card>
+
+
+
+
+</ion-card>
+
+  <br>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="danger" (click)="Onlogout()" href="/inicio">
+      <ion-icon name="log-out"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

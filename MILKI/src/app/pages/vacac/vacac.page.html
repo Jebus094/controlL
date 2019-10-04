@@ -1,0 +1,191 @@
+<ion-header>
+    <ion-toolbar color="danger">
+        <ion-buttons>
+            <ion-menu-button color="light"
+                             menu="menu">
+            </ion-menu-button>
+  
+    <ion-title text-center>Vacas</ion-title>
+          </ion-buttons>
+      <ion-buttons slot="end">
+          <ion-avatar>
+             <img class="avatar" src="../../assets/icon/F2.png ">
+          </ion-avatar>
+        </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+<ion-content>
+
+    <ion-button color="light" size="small"  (click)="contar()">
+      Guardar registros
+      <ion-input id="totalv" type="text" [value]="totalv" ></ion-input>
+    </ion-button>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed"  > 
+        <ion-fab-button color="danger">
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    
+        <ion-fab-list side="top" >
+          <ion-fab-button routerLink= '../vacar' ><ion-icon name="add" ></ion-icon></ion-fab-button>
+        </ion-fab-list>
+    
+        <ion-fab-list side="start" >
+          <ion-fab-button (click)="descargar()"><ion-icon name="document" ></ion-icon></ion-fab-button>
+        </ion-fab-list>
+      </ion-fab>
+
+    <ion-card  *ngFor="let item of vaca">
+        <span *ngIf="!item.isEdit; else elseBlock">
+          <ion-card-header>
+            <ion-card-title>Nombre: {{item.nombre_vaca}} </ion-card-title>
+            <ion-card-subtitle>
+                ID: {{item.numero_vaca}} <br>
+                Peso: {{item.peso}} KG <br>
+                Fecha de Nacimiento: {{item.FN | date: 'dd-MM-yyyy'}}<br>
+                Cantidad de hijos : {{item.cantidad_hijos}} <br>
+                Raza: {{item.raza}} <br>
+                Estado: {{item.estado}} <br>
+                <br>
+                Enfermedad: {{item.enfermedad}}<br>
+                Medicamento: {{item.medicamento}}
+            </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+     
+            <ion-button shape="round" color="secondary" size="small" (click)="EditRecord(item)">
+              <ion-icon size="small" slot="icon-only" name="create"></ion-icon>
+     
+            </ion-button>
+            <ion-button shape="round" color="danger" size="small" (click)="RemoveRecord(item.id)">
+              <ion-icon size="small" slot="icon-only" name="trash"></ion-icon>
+            </ion-button>
+
+            <ion-button slot="end" shape="round" color="success" size="small" >
+                <ion-icon size="small" slot="icon-only" name="download"></ion-icon>
+            </ion-button>
+          </ion-card-content>
+
+          <ion-content class="tabla" >
+              <ion-list id="results" >
+                <ion-item class="tabla">
+                    <ion-label>Nombre de la Finca: {{ dataService.name }}</ion-label>
+                </ion-item>
+                <ion-item class="tabla">
+                    <ion-label>Fecha de informe: <p> {{ myDate | date }}</p></ion-label>
+                </ion-item>
+                <ion-item class="tabla">
+                    <ion-label>Total Novillas Registradas: {{ dataService.totalm }}</ion-label>
+                </ion-item>
+                <ion-item  *ngFor="let item of ganaderia | async " >
+              <table class="tabla" >
+                  <thead>
+                      <tr >
+                          <th>Nombre: {{item.nombre_vaca}}</th>
+                          <th>ID: {{item.numero_vaca}}</th> 
+                          <th>Peso: {{item.peso}} KG</th> 
+                      </tr>
+                      <tr>
+                          <th>Fecha de Nacimiento: {{item.FN | date: 'dd-MM-yyyy'}}</th>
+                          <th>Raza: {{item.raza}}</th>  
+                          <th>Cantidad de Hijos: {{item.cantidad_hijos}}</th> 
+                      </tr>
+                      <tr>
+                        <th>Estado: {{item.estado}}</th> 
+                        <th>Enfermedad: {{item.enfermedad}}</th> 
+                        <th>Medicamento: {{item.medicamento}}</th> 
+                      </tr>
+                      <tr>
+                        <th>Estado: {{item.estado}}</th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                    </thead>
+            </table>
+          </ion-item>
+              </ion-list>
+        </ion-content>
+
+        </span>
+        <ng-template #elseBlock>
+          <ion-card-header>
+            <ion-card-title>
+              
+            </ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-item>
+              <ion-label><strong>Nombre</strong></ion-label>
+              <ion-input type="text" [(ngModel)]="item.Editnombre_vaca"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label><strong>ID</strong></ion-label>
+              <ion-input type="text" [(ngModel)]="item.Editnumero_vaca"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label><strong>Peso</strong></ion-label>
+              <ion-input type="text" [(ngModel)]="item.Editpeso"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label><strong>Fecha de Nacimiento</strong></ion-label>
+              <ion-input type="text" [(ngModel)]="item.EditFN"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <strong><ion-label>Raza</ion-label></strong>
+                <ion-select [(ngModel)]="item.Editraza">
+                  <ion-select-option value="Brahman">Brahman</ion-select-option>
+                  <ion-select-option value="Gyr">Gyr</ion-select-option>
+                  <ion-select-option value="Holstein">Holstein</ion-select-option>
+                  <ion-select-option value="Jersey">Jersey</ion-select-option>
+                  <ion-select-option value="Normando">Normando</ion-select-option>
+                  <ion-select-option value="Simental">Simental</ion-select-option>
+                </ion-select>
+              </ion-item>
+
+            <ion-item>
+                <ion-label><strong>Cantidad de Hijos</strong></ion-label>
+                <ion-input type="number" [(ngModel)]="item.Editcantidad_hijos"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label><strong>Estado</strong></ion-label>
+              <ion-input type="text" [(ngModel)]="item.Editestado"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label><strong>Enfermedad</strong></ion-label>
+                <ion-input type="text" [(ngModel)]="item.Editenfermedad"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                  <ion-label><strong>Medicamento</strong></ion-label>
+                  <ion-input type="text" [(ngModel)]="item.Editmedicamento"></ion-input>
+                </ion-item>
+
+<ion-grid>
+                <ion-row>
+                  <ion-col>
+                    
+                  </ion-col>
+                  <ion-col>
+                    <ion-button fill="outline" color="danger" size="small" (click)="item.isEdit = false">
+                      Cancelar
+                    </ion-button>
+                  </ion-col>
+                  <ion-col>
+                    <ion-button fill="outline" color="success" size="small" (click)="UpdateRecord(item)">
+                      Actualizar
+                    </ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+          </ion-card-content>
+        </ng-template>
+      </ion-card>
+</ion-content>
+
